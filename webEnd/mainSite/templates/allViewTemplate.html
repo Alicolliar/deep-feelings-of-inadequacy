@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+{% block head %}
+<title>NSInvest - View All Assets</title>
+{% endblock %}
+{% block content %}
+<section class="hero is-small">
+  <div class="hero-body" style="padding: 0px">
+    <p class="subtitle">Overviews</p>
+  </div>
+</section>
+<div class="tabs">
+  <ul>
+    <a href="{{url_for('view.viewAllStocks')}}">
+      <li>
+        Stocks
+      </li>
+    </a>
+  </ul>
+  <ul>
+    <a href="{{url_for('view.orderBookView')}}">
+      <li>
+        Open Orders
+      </li>
+    </a>
+  </ul>
+</div>
+{% block body %}
+{% endblock %}
+{% if not session['user']%}
+<h4>If you would like to trade any of these assets, then <a href="{{url_for('userRelated.loginPage')}}">sign up for an account</a> or <a href="{{url_for('userRelated.loginPage')}}">log in</a>.</h4>
+{% endif %}
+{% endblock %}

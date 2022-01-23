@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% block head %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js'></script>
+{% endblock %}
+{% block content %}
+<div class="section">
+  <h2 class="title">{{baseData['name']}} ({{baseData['ticker']}})</h2>
+  <div class="box assetGraphView">
+    <canvas id="myChart"></canvas>
+    <script>
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            responsive: true,
+            labels: [{%for timepoint in timepoints%}
+                     "{{timepoint}}",
+                      {%endfor%}],
+            datasets: [{
+                label: 'Stock Price',
+                data: [{%for price in prices%}
+                        {{price}},
+                        {%endfor%}],
+                backgroundColor: [
+                    'rgba(0, 0, 255, 255)',
+                ],
+                borderColor: [
+                    'rgba(0, 0, 255, 255)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+  </div>
+</div>
+<div class="section">
+  <div class="box">
+    Stock Price: {{baseData['price']}}<br>
+    Stock Volume: {{baseData['volume']}}<br>
+    Stock Market Capitalisation: {{baseData['marketcap']}}<br>
+  </div>
+</div>
+{% endblock %}

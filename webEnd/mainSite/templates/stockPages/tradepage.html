@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+{% block head %}
+<script type="text/javascript">
+  var intervalId = window.setInterval(function ShowIfTrue() {
+          var curElectType = document.getElementById("priceSelect").value;
+          if (curElectType == "market") {
+            document.getElementById("priceInput").style.display = "none";
+          } else if (curElectType == "own") {
+            document.getElementById("priceInput").style.display = "block";
+          }}, 100);
+</script>
+<title>Palladium Markets - Trade Entry</title>
+{% endblock %}
+{% block content %}
+<h3>Enter Trade</h3>
+{% if errorMessage %}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>An error has occurred with your trade</p>
+  </div>
+  <div class="message-body">
+    {{errorMessage}}
+  </div>
+</article>
+{% endif %}
+<form method="post" class="form">
+  <label for="tickerInput">Ticker</label><br>
+  <input class="input" type="text" name="ticker" id="tickerInput"><br>
+  <label for="buy">Buy</label>
+  <input type="radio" id="buy" name="tradeType" value="Buy"><br>
+  <label for="sell">Sell</label>
+  <input type="radio" id="sell" name="tradeType" value="Sell"><br>
+  <label for="quantity">Quantity to Trade</label><br>
+  <input class="input" type="number" name="quantity" id="quantity" value="0"><br>
+  <label for="market">Market price</label>
+  <input type="radio" id="market" name="priceSelect" value="market" checked="checked"><br>
+  <label for="own">Set price</label>
+  <input type="radio" id="own" name="priceSelect" value="own"><br>
+  <input class="input" type="number" step="0.01" id="priceInput" name="priceSet" value="0"><br>
+  <input type="submit">
+</form>
+{% endblock %}

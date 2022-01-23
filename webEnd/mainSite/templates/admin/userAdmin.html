@@ -1,0 +1,82 @@
+{% extends "adminPageTemplates.html" %}
+{% block body %}
+{% if errorThing %}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>An error has occurred</p>
+  </div>
+  <div class="message-body">
+    {{errorThing}}
+  </div>
+</article>
+{% endif %}
+{% if successThing %}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>A success has occurred</p>
+  </div>
+  <div class="message-body">
+    {{successThing}}
+  </div>
+</article>
+{% endif %}
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">Update a user to admin</h4>
+      </header>
+      <form class="form" method="post">
+        <label for="usernameInput">Username to upgrade<br></label>
+        <input type="text" name="userName" id="usernameInput"><br>
+        <input type="hidden" name="upgrdaeUser">
+        <input type="submit" class="button is-primary">
+      </form>
+    </div>
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">Delete User</h4>
+      </header>
+      <form class="form" method="post">
+        <label for="usernameInput">User to delete<br></label>
+        <input type="text" name="userName" id="usernameInput"><br>
+        <input type="hidden" name="deleteUser">
+        <input type="submit" class="button is-danger">
+      </form>
+    </div>
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">Issue API Key</h4>
+      </header>
+      <form class="form" method="post">
+        <label for="usernameInput">User to Give Key<br></label>
+        <input type="text" name="userName" id="usernameInput"><br>
+        <label for="apiInput">Api Key To Give User<br>(Generate keys <a href="https://codepen.io/corenominal/pen/rxOmMJ">here</a>)<br></label>
+        <input type="text" name="newKey" id="apiInput"><br>
+        <input type="hidden" name="keyIssue">
+        <input type="submit" class="button is-link">
+      </form>
+    </div>
+  </div>
+  <div class="column is-one-third">
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">User Cash Transfer</h4>
+      </header>
+      <form class="form" method="post">
+        <label for="usernameInput">User to Transfer To</label><br>
+        <input type="text" name="userName" id="usernameInput"><br>
+        <h5>Direction For Cashflow</h5>
+        <label for="deposit">Deposit</label>
+        <input type="radio" value="deposit" name="cashDirection" id="deposit"><br>
+        <label for="withdrawal">Withdraw</label>
+        <input type="radio" value="withdraw" name="cashDirection" id="withdrawal"><br>
+        <label for="cashToDrop">Cash To Move</label><br>
+        <input type="number" name="cashToTransfer" id="cashToDrop" step="0.01"><br>
+        <input type="hidden" name="userTransference">
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

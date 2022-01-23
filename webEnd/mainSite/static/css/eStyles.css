@@ -1,0 +1,63 @@
+/*Note: This simply supplements the sites CSS, which is wholly provided by bulma*/
+html {font-size: 105%;background-color: #59a6a9;}
+a { text-decoration: none;}
+.box {width: fit-content;}
+header {
+  padding-bottom: 5px;
+}
+header, .navbar-menu, .dropdown-trigger, .navbar-item, .message-header {
+  background-color: #348a8d;
+  color: #fad338;
+}
+header .title, .navbar-start .navbar-item, .dropdown .dropdown-trigger {
+  color: #fad338;
+}
+
+.content .message .message-body, code, .portView {background-color: #4d9fa2;}
+
+#mobDrop {
+  display: none;
+  width:100%
+}
+
+#cuntHole {
+  color: #fad338;
+}
+
+#assetViewSelectors {
+  background-color: #00d1b2;
+}
+
+.assetGraphView {
+  width: 500px;
+  height: 300px
+}
+
+ a {
+  color: #454088;
+}
+
+.navbar-start .navbar-item:hover, .dropdown-content, .dropdown-content a{
+  background-color: #348a8d;
+  color: #fad338;
+  text-decoration: none;
+}
+
+tr, th {
+  background-color: #59a6a9;
+}
+
+.viewHero, .viewTitle {
+  background-color: #348a8d;
+  color: #fad338;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 1024px) {
+    nav .navbar-menu {
+    display: none;
+  }
+  #mobDrop {
+    display: inline-block;
+  }
+}

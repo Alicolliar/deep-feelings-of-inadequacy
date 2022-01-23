@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+{% block head %}
+<title>{{config.HEADER_NAME}} - Homepage</title>
+{% endblock %}
+{% block content %}
+<!--<div class="section">
+  <div class="message is-danger">
+    <div class="message-header">
+      <h1 style="font-size:125%"><b>NOT AS OF YET OPEN FOR BUSINESS</b></h1>
+    </div>
+    <div class="message-body">
+      Hi, welcome. If you're here, cool, you are able to create an account here, however you're not able to fund that account as we're not registered as a business as of yet, and definitely not able to trade any stocks. Because, well, there are none.
+    </div>
+  </div>-->
+  <div class="content">
+    <h3 class="title">Welcome to Helium Markets</h3>
+    <p>Helium is a new type of stock exchange, started with a single vision, to revolutionise the way stock exchange in DemocracyCraft work and streamline them down to a tee.<br>
+      We want to have a market that is dictated by that market from the get-go, instead of analysts we've hired setting prices that seem to only go up.<br>
+      We also wanted to make a market where trades can be entered faster, instead of having to rely on unreliable humans, we used computers for that (Of course, the computers are only as good as their devs, but I think you'll agree it's a lot faster)</p>
+    <h4>Sounds interesting, please, tell me more.</h4>
+    <p>The best place to start is our <a href="{{url_for('index.catchMost')}}">Catch-Most Questions</a>, where you should be able to find the majority of the the answers you <br>
+    desire. It is also highly recommended that you join our discord server, as there you can converse with our excellent team and set about funding your account.</p>
+    <h4>Ok then, how do I get started?</h4>
+    <p>Well, the first port of call should be to <a href="{{url_for('userRelated.userRegistration')}}"> the sign-up page</a> where you can register an account with us. Once you've <br>
+      registered an account, join the Discord server and ask about funding your account. If you any more questions please do check out our <a href="{{url_for('index.catchMost')}}">Catch-Most Questions</a>,<br>
+      and if you want to make sure it's all above board, please check our <a href="{{url_for('index.compliance')}}">Compliance page</a> where we discuss this further.</p>
+
+    <iframe src="https://discord.com/widget?id=911298502401871872&theme=dark" width="350" height="250" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </div>
+</div>
+{% endblock %}

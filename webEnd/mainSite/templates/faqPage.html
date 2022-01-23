@@ -1,0 +1,92 @@
+{% extends "template.html" %}
+{% block content %}
+<div class="section">
+  <div class="content">
+    <h3 class="title">Catch Most Questions</h3><br>
+    <h5 class="subtitle">These questions should cover most, but possibly not all, of your questions. For any left, please talk join our Discord server and chat to someone there</h5>
+    <div class="message">
+      <div class="message-header">
+        <p>"How does this exchange actually work?"</p>
+      </div>
+      <div class="message-body">
+        <p>The exchange works on a mostly automated system, constructed by Aligallaton, which has been made as open-source as possible (the code for which can be found <a href="https://github.com/Alicolliar/MCInvest">here</a>).<br>
+          It was written by hand, and I have attempted to illustrate where the code isn't mine in through commenting. The exchange operates entirely on player-to-player trading system, meaning the exchange itself can't buy/sell stock.</p>
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>"I've entered a trade, what happens now?"</p>
+      </div>
+      <div class="message-body">
+        <p>Your trade is looking to be matched against other trades. You can view all open (anonymised) trades over <a href="{{url_for('view.orderBookView')}}">here</a>. If your trade finds a match within +-5% of it's price, which we call "the spread",<br>
+          then it will fill out that much of the order. Once your trade has been completely filled, you will be charged and the stock added to your account. Below is an image of the Trade Entry lifecycle</p>
+          <img src="{{url_for('static', filename='img/MCInvest-Trade-Lifecycle.jpg')}}" height="800px" width="400px">
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>"Ok, but how will this all change the stock's price if I can set my own prices?"</p>
+      </div>
+      <div class="message-body">
+        <p>Stock prices are adjusted on a trade-by-trade basis, taking into account the volume being traded and the price it's being trade at. The algorithm for this can be seen below:</p>
+        <code>
+          volWeight = volume/wholeStockVolume <br>
+          if tradeType == "Buy": <br>
+          &emsp;priceAdjust = 1+((price-currentPrice)/currentPrice)<br>
+          &emsp;newPrice = currentPrice * (1+(priceAdjust*volWeight))<br>
+          elif tradeType == "Sell":<br>
+          &emsp;priceAdjust = 1-((price-currentPrice)/currentPrice)<br>
+          &emsp;newPrice = currentPrice * (1-(priceAdjust*float(volWeight)))
+          </code>
+          <p>Where:
+            <ul>
+              <li>"volume" = the amount you want to trade</li>
+              <li>"price" = the price you set to trade</li>
+              <li>"currentPrice" = the price the stock is trading at pre-adjustment</li>
+              <li>"wholeStockVolume" = the total volume of stock the company has chosen to issue (up to 10,000 shares)</li>
+              <li>"newPrice" = the new stock price</li>
+            </ul>
+            Adjusting prices in a way like this allows us to cut out any chance of corruption or dodgy price-setting.
+          </p>
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>Huh, how interesting. I own a company, how I would go about IPOing on this exchange?</p>
+      </div>
+      <div class="message-body">
+        <p>We'd recommend that you talk to various investment firms in order to look for a fair valuation for your company, then I'd recommend you contact us through Discord <br>
+          with all the details, including the account you'd like the shares to start with (you can set up a company specific account for the shares), we can then manually (without adjusting the stock price)<br>
+          place a quantity of shares on the market and away you go. As people buy the shares the accounts cash balance will increase and you can withdraw when needed.</p>
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>"What kind of compliance measures do you have? Do you send anything to the DEC?"</p>
+      </div>
+      <div class="message-body">
+        This is covered in <a href="{{url_for('index.compliance')}}">the Compliance page</a>.
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>"How did you come up with all of this?"</p>
+      </div>
+      <div class="message-body">
+        Short answer: Alcohol and poor decision making (mostly impaired by alcohol) <br>
+        Long answer: A sailing club pub quiz and easy access to Google Docs which generated <a href="https://docs.google.com/document/d/1NDRACIPQ3s_xhFUNX0bdYN4h0QbU3j2Uamvyxcor_qk/edit"> this document.</a> I then started <br>
+        using the project for a uni project, which meant I had to make <a href="https://docs.google.com/document/d/1u762jMMaasmKxHkmvZlK2PqvO3WcQeYl-OYO8xNw1d0/edit">this document.</a>
+
+      </div>
+    </div>
+    <div class="message">
+      <div class="message-header">
+        <p>"Is this related to Onyx?"</p>
+      </div>
+      <div class="message-body">
+        No, not at all. Onyx and us hold nothing but contempt for each other.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

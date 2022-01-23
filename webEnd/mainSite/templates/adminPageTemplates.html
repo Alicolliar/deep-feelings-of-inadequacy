@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+{% block head %}
+<title>NSInvest - Administration</title>
+{% endblock %}
+{% block content %}
+<div class="tabs">
+  <ul>
+    <a href="{{url_for('admin.adminUser')}}">
+      <li>
+        Users
+      </li>
+    </a>
+    <a href="{{url_for('admin.adminStocks')}}">
+      <li>
+        Stocks
+      </li>
+    </a>
+    <a href="{{url_for('admin.adminCompliance')}}">
+      <li>
+        Regulators
+      </li>
+    </a>
+    <a href="#">
+      <li>
+        Misc.
+      </li>
+    </a>
+  </ul>
+</div>
+{% block body %}
+{% endblock %}
+<h4>Thanks for working for us, admin, and remember to keep on smiling!</h4>
+{% endblock %}

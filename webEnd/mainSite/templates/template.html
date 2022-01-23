@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="Author" content="Aligallaton">
+    <meta name="Codename" content="Helium">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/eStyles.css')}}">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <p class="title">{{config.HEADER_NAME}}</p>
+    </header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="{{url_for('index.home')}}">
+            Homepage
+          </a>
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger navbar-item">
+              <a href="{{url_for('view.viewAllStocks')}}" id="cuntHole">
+                Views
+              </a>
+            </div>
+            <div class="dropdown-menu">
+              <div class="dropdown-content">
+                <a href="{{url_for('view.viewAllStocks')}}">All Stocks</a>
+              </div>
+              <div class="dropdown-content">
+                <a href="{{url_for('view.orderBookView')}}">Open Orders</a>
+              </div>
+            </div>
+          </div>
+          <a class="navbar-item" href="{{url_for('view.portfolioView')}}">
+            Your Portfolio
+          </a>
+          <a class="navbar-item" href="{{url_for('trades.tradeEntry')}}">
+            Trade
+          </a>
+          <a class="navbar-item" href="{{url_for('index.catchMost')}}">
+            Catch Most Questions
+          </a>
+          <a class="navbar-item" href="{{url_for('index.compliance')}}">
+            Compliance
+          </a>
+        </div>
+        <div class="navbar-end">
+          {%- if not session['user'] %}
+          <div class="navbar-item">
+              <a class="button is-link" href="{{url_for('userRelated.userRegistration')}}">
+                Sign Up
+              </a>
+          </div>
+          <div class="navbar-item">
+            <a class="button is-primary" href="{{url_for('userRelated.loginPage')}}">
+              Log In
+            </a>
+          </div>
+          {%- else %}
+          <div class="navbar-item">
+            <a class="button is-primary" href="{#{{url_for('userRelated.userControls')}}#}">
+              User Controls
+            </a>
+          </div>
+          <div class="navbar-item">
+            <a class="button is-danger" href="{{url_for('userRelated.logout')}}">
+              Logout
+            </a>
+          </div>
+          {%- endif %}{%- if session['admin'] %}
+          <div class="navbar-item">
+            <a class="button is-primary" href="{{url_for('admin.adminUser')}}">
+              Admin Panel
+            </a>
+          </div>
+          {%- endif %}
+        </div>
+      </div>
+      <div class="dropdown is-hoverable" id="mobDrop">
+       <div class="dropdown-trigger">
+         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" style="width: 100%;">
+           <span>Navigation</span>
+           <span class="icon is-small">
+             <i class="fas fa-angle-down" aria-hidden="true"></i>
+           </span>
+         </button>
+       </div>
+       <div class="dropdown-menu" id="dropdown-menu" role="menu" style="width: 100%;">
+         <div class="dropdown-content">
+            <a href="{{url_for('index.home')}}" class="dropdown-item">
+              Homepage
+            </a>
+            <hr clas="dropdown-divider">
+            <a href="{{url_for('view.viewAllStocks')}}" class="dropdown-item">
+              View All Stonks
+            </a>
+            <a href="{{url_for('view.orderBookView')}}" class="dropdown-item">
+              View All Open Orders
+            </a>
+            <a href="{{url_for('view.portfolioView')}}" class="dropdown-item">
+              Your Portfolio
+            </a>
+            <a href="{{url_for('trades.tradeEntry')}}" class="dropdown-item">
+              Trade
+            </a>
+            <a href="{{url_for('view.orderBookView')}}" class="dropdown-item">
+              Catch-Most Questions
+            </a>
+            <a href="{{url_for('view.orderBookView')}}" class="dropdown-item">
+              Compliance
+            </a>
+            <hr class="dropdown-divider">
+            {%- if not session['user'] %}
+            <a class="dropdown-item" href="{{url_for('userRelated.userRegistration')}}">
+              Sign Up
+            </a>
+            <a class="dropdown-item" href="{{url_for('userRelated.loginPage')}}">
+              Log In
+            </a>
+            {%- else %}
+            <a class="dropdown-item" href="{#{{url_for('userRelated.userControls')}}#}">
+              User Controls
+            </a>
+            <a class="dropdown-item" href="{{url_for('userRelated.logout')}}">
+              Logout
+            </a>
+            {% endif %}
+            {%- if session['admin'] %}
+            <hr class="dropdown-divider">
+            <a href="{{url_for('admin.adminUser')}}" class="dropdown-item">
+              Admin Panel
+            </a>
+            {% endif %}
+          </div>
+        </div>
+       </div>
+    </nav>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer>
+      <div>
+        <h2 class="title" style="text-align: center;">Masthead</h2>
+      </div>
+      <div class="level">
+        <div class="level-item">
+          <div>
+            <p class="heading">CEO/<a href="https://github.com/Alicolliar/MCInvest">Developer</a></p>
+            <p class="title">Aligallaton</p>
+          </div>
+        </div>
+        <div class="level-item">
+          <div>
+            <p class="heading">Legal and Compliance Fellow</p>
+            <p class="title">Danyo</p>
+          </div>
+        </div>
+        <div class="level-item">
+          <div>
+            <p class="heading">Head of Corporate Relations</p>
+            <p class="title">ComradeLuigi</p>
+          </div>
+        </div>
+        <div class="level-item">
+          <div>
+            <p class="heading">Head of Investor Relations</p>
+            <p class="title">HalfCat_</p>
+          </div>
+        </div>
+      </div>
+      <a href="https://simpleanalytics.com/heliumarkets.com?utm_source=heliumarkets.com&utm_content=badge" referrerpolicy="origin" target="_blank"><img src="https://simpleanalyticsbadges.com/heliumarkets.com?counter=true&radius=10" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous" /></a>
+    </footer>
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+  </body>
+</html>

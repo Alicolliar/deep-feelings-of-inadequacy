@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+{% block head %}
+<title>NSinvest - Login</title>
+{% endblock %}
+{% block content %}
+{% if error %}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>An error has occurred with your login</p>
+  </div>
+  <div class="message-body">
+    {{error}}
+  </div>
+</article>
+{% endif %}
+<form class="content" method="POST">
+  <div class="field">
+    <label class="label">Username </label>
+    <div class="control">
+      <input class="input" type="text" name="userName" placeholder="Username">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control">
+      <input type="password" name="pWord" password="password" class="input">
+    </div>
+  </div>
+  <div class="field">
+    <input type="submit" class="button is-success" value="Login"></input>
+  </div>
+</form>
+{% endblock %}

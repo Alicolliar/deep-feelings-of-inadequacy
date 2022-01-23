@@ -1,0 +1,23 @@
+{% extends "adminPageTemplates.html" %}
+{% block body %}
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="box">
+      <h3 class="title">
+        Cash Transactions
+      </h3>
+    <a href="https://storage.cloud.google.com/nsinvest-infra.appspot.com/finLogs/logs/cashTransactions.csv" download><button type="button">Download Cash Transactions</button></a>
+    </div>
+  </div>
+  <div class="column is-one-third">
+    <div class="box">
+      <h3 class="title">
+        All Closed Trades
+      </h3>
+    {% for ticker in tickers%}
+    <a href="https://storage.cloud.google.com/nsinvest-infra.appspot.com/finLogs/logs/tradelogs/{{ticker}}.csv" download><button type="button">Download Closed Trades for {{ticker}}</button></a>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

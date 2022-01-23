@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+{% block head %}
+<title>Palladium Markets - Trade Confirm</title>
+{% endblock %}
+{% block content %}
+{% if errMess %}
+<div class="message is-danger">
+  <div class="message-header">
+    An error has occurred
+  </div>
+  <div class="message-body">
+    {{errMess}}
+  </div>
+</div>
+{% endif %}
+<section class="section">
+  <h3 class="title">Trade Confirmation</h3>
+</section>
+<section class="section">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-title">
+        <h4>Trade Details</h4>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        Trade Type: {{data[3]}}<br>
+        Trade Stock: {{data[0]}}<br>
+        Trade Price: {{data[2]}}<br>
+        Trade Quantity: {{data[1]}}<br>
+        Total Trade Value: {{data[4]}}<br>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <form method="post">
+    <button class="button is-danger" name="Revert" onclick="history.back()">Go Back</button> <input type="submit" class="button is-link" value="Submit Trade">
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "adminPageTemplates.html" %}
+{% block body %}
+{% if errorThing %}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>An error has occurred</p>
+  </div>
+  <div class="message-body">
+    {{errorThing}}
+  </div>
+</article>
+{% endif %}
+{% if successThing %}
+<article class="message">
+  <div class="message-header">
+    <p>A success has occurred</p>
+  </div>
+  <div class="message-body">
+    {{successThing}}
+  </div>
+</article>
+{% endif %}
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">Add a new stock</h4>
+      </header>
+      <form class="form" method="post">
+        <label for="companyInput">Company Name <br></label>
+        <input type="text" name="comName" id="companyInput"><br>
+        <label for="tickerInput">Stock Ticker <br></label>
+        <input type="text" name="stockTicker" id="tickerInput"><br>
+        <label for="stockVol">Stock Volume <br></label>
+        <input type="number" name="volume" id="stockVol"><br>
+        <label for="comCap">Stock Initial Capitalisation<br></label>
+        <input type="number" step="0.01" name="marketCap" id="comCap"><br>
+        <label for="stockUser">User To Start Stock<br></label>
+        <input type="hidden" name="addStock">
+        <input type="text" name="startingUser" id="stockUser"><br>
+        <input type="submit" class="button is-primary">
+      </form>
+    </div>
+  </div>
+  <div class="column is-one-third">
+    <div class="card">
+      <header class="card-header">
+        <h4 class="card-header-title">Manual Stock Trade</h4>
+      </header>
+      <p>All trades are logged at Market Price</p>
+      <form class="form" method="post">
+        <label for="tickerInput">Ticker<br></label>
+        <input type="text" name="ticker" id="tickerInput"><br>
+        <label for="quant">Volume To Trade</label><br>
+        <input type="number" name="quantity" id="quant"><br>
+        <label for="buy">Buy</label>
+        <input type="radio" id="buy" name="tradeType" value="Buy"><br>
+        <label for="sell">Sell</label>
+        <input type="radio" id="sell" name="tradeType" value="Sell"><br>
+        <label for="userOnBehalf">User to Enter Trade For</label><br>
+        <input type="text" name="userName" id="userOnBehalf"><br>
+        <input type="hidden" name="manualSale">
+        <input type="submit" class="button is-link">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

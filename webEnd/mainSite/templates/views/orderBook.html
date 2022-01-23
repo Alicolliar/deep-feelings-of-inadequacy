@@ -1,0 +1,38 @@
+{% extends "allViewTemplate.html" %}
+{% block body %}
+<section class="hero viewHero">
+  <div class="hero-body viewTitle">
+    <p class="title">
+      All Open Orders
+    </p>
+  </div>
+</section>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Trade Opened</th>
+      <th>Stock</th>
+      <th>Trade Type</th>
+      <th>Price</th>
+      <th>Total Volume</th>
+      <th>Total Value</th>
+      <th>Volume Remaining</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for stock in allStocks %}
+    <tr>
+      <th>{{stock[0]}}</th>
+      <th>{{stock[1]}}</th>
+      <th>{{stock[2]}}</th>
+      <th>{{stock[3]}}</th>
+      <th>{{stock[4]}}</th>
+      <th>{{stock[5]}}</th>
+      <th>{{stock[6]}}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ super() }}
+{% endblock %}

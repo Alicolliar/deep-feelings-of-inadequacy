@@ -1,0 +1,87 @@
+{% extends "template.html"%}
+{% block head %}
+<title>NSInvest - Your Portfolio</title>
+{% endblock %}
+{% block content %}
+<div class="columns">
+  <div class="column is-half">
+    <div class="level">
+      <div class="level-item">
+        <div>
+          <h3 class="title">Total Account Value</h3>
+          <h2>${{totalValue}}</h2>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <h3 class="title">Cash Value</h3>
+          <p>${{cashBal}}</p>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <h3 class="title">Asset Values</h3>
+          <p>${{totalValue-cashBal}}</p>
+        </div>
+      </div>
+    </div>
+    <h3 class="subtitle">Your stock holdings</h3>
+    <table class="table is-bordered" class="portView">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Current Stock Price</th>
+          <th>Purchase Price</th>
+          <th>Quantity</th>
+          <th>Total Current Value</th>
+          <th>P/L</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in assets %}
+        <tr>
+          <td><a href="{{url_for('view.viewCertainStock', ticker=stock[0])}}">{{stock[0]}}</a></td>
+          <td>${{stock[4]}}</td>
+          <td>${{stock[2]}}</td>
+          <td>{{stock[1]}}</td>
+          <td>${{stock[4] * stock[1]}}</td>
+          <td>${{(stock[2]*stock[1])-(stock[4]*stock[1])}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th>Total Value</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>${{totalValue-cashBal}}</th>
+          <th></th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subtitle">Your Closed Trades</h3>
+    <table class="table is-bordered" class="portView">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Trade Type</th>
+          <th>Trade Price</th>
+          <th>Quantity</th>
+          <th>Total Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in trades %}
+        <tr>
+          <td><a href="{{url_for('view.viewCertainStock', ticker=stock[0])}}">{{stock[0]}}</a></td>
+          <td>{{stock[1]}}</td>
+          <td>${{stock[2]}}</td>
+          <td>${{stock[3]}}</td>
+          <td>${{stock[2] * stock[3]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

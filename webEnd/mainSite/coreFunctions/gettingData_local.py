@@ -89,3 +89,9 @@ def checkPortValue(cur, userID, stock, quant):
         return None
     else:
         return "You don't hold enough of this stock"
+
+def getOpenOrders(cur, stock):
+    grabQuery = "SELECT tradeType, quantStock, stockPrice, totalTradeValue FROM openTrades WHERE ticker = '"+ticker+"';"
+    cur.execute(grabQuery)
+    openOrders = cur.fetchall()
+    return openOrders

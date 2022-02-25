@@ -21,6 +21,7 @@ def viewCertainStock(ticker):
     baseData = gettingData.getStockInfo(ticker)
     timepoints, prices = gettingData.getPastPrices(ticker)
     baseData["ticker"] = ticker
+
     return render_template("views/stockView.html", baseData=baseData, timepoints=timepoints, prices=prices)
 
 

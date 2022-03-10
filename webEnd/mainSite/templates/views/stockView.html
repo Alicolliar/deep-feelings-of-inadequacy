@@ -48,4 +48,25 @@
     Stock Market Capitalisation: {{baseData['marketcap']}}<br>
   </div>
 </div>
+<div class="section">
+  <div class="box">
+    List of Shareholders
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Quantity of Shares</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for shareHolder in shareHolders %}
+        <tr>
+          <td>{{shareHolder[0]}}</td>
+          <td>{{shareHolder[1]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}

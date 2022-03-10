@@ -5,13 +5,11 @@ def cashDeposit(cur, user, cashToDeposit):
     cashCheckQueryUser = "SELECT cashBalance FROM users WHERE userID = '"+str(user)+"';"
     cur.execute(cashCheckQueryUser)
     currentBalance = cur.fetchone()[0]
-    if currentBalance == 0:
-        newBalance = cashToDeposit
-    else:
-        newBalance = cashToDeposit + currentBalance
+    newBalance = cashToDeposit + currentBalance
     loggingData.logCashTransaction(cur, user, cashToDeposit, "deposit")
     cashDepositQuery = "UPDATE users SET cashBalance = '"+str(newBalance)+"' WHERE userID = '"+str(user)+"';"
     cur.execute(cashDepositQuery)
+    return "Success"
 
 
 def cashWithdrawal(cur, user, cashToWithdraw):

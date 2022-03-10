@@ -6,3 +6,4 @@ nsinvest-infra-*
 *cloud*
 app.yaml
 .travis.yml
+*.ini

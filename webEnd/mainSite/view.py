@@ -21,7 +21,12 @@ def viewCertainStock(ticker):
     baseData = gettingData.getStockInfo(ticker)
     timepoints, prices = gettingData.getPastPrices(ticker)
     baseData["ticker"] = ticker
-    return render_template("views/stockView.html", baseData=baseData, timepoints=timepoints, prices=prices)
+    getShareHolders = "SELECT users.username, stockHoldings.volumeOwned FROM users, stockHoldings WHERE stockTicker = '"+ticker+"' AND users.userID = stockHoldings.stockholder;"
+    conn = config()
+    with conn.cursor() as cur:
+        cur.execute(getShareHolders)
+        shareHolders = cur.fetchall()
+    return render_template("views/stockView.html", baseData=baseData, timepoints=timepoints, prices=prices, shareHolders=shareHolders)
 
 
 @bp.route('/orderBook')
